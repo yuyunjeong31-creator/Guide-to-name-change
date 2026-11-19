@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-size: 16px;
+    font-family: 'IBM Plex Sans KR', 'Plus Jakarta Sans', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    background-color: #f7faf5;
+    color: #181a18;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html.large-text {
+    /* 16px * (4/3) = 21.3333px: scales 16->21.3, 18->24, 21->28, 24->32, 28->37.3, 64->85.3 */
+    font-size: 21.3333px;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+}
+
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+}
+
+.accordion-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.accordion-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.accordion-plus-icon {
+  transition: transform 0.4s ease;
+}
+
+.accordion-plus-icon[data-open="true"] {
+  transform: rotate(45deg);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-panel,
+  .accordion-plus-icon,
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
